@@ -2,7 +2,7 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: circleci/php:7.4.6
+      - image: circleci/php:7.4.6-fpm
     steps:
       - checkout
       - run: composer install
