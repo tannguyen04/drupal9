@@ -4,6 +4,7 @@ jobs:
     docker:
       - image: nginx:latest
       - image: circleci/php:7.3-fpm-node-browsers-legacy
+        user: root
     steps:
       - checkout
       - run: composer install
