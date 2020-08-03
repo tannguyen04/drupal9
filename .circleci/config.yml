@@ -3,6 +3,8 @@ jobs:
   build:
     docker:
       - image: nginx:latest
+      - image: circleci/php:7.3-fpm-stretch-node-browsers-legacy
     steps:
       - checkout
+      - run: composer install
       - run: echo 'abc'
