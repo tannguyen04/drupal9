@@ -2,9 +2,7 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: nginx:latest
-      - image: circleci/php:7.3-fpm-node-browsers-legacy
-        user: root
+      - image: circleci/php:7.4.6
     steps:
       - checkout
       - run: composer install
