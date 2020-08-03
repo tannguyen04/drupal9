@@ -2,7 +2,7 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: drupal:fpm
+      - image: drupal:8.9.2-fpm
     steps:
       - checkout
       - run: composer install
