@@ -8,6 +8,7 @@ jobs:
       # Setup Environment Variables
       - run:
           command: |
+            apt-get update
             apt-get install -y curl git vim wget
       - run:
           name: Install Composer
