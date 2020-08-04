@@ -2,10 +2,13 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: drevops/ci-builder
+      - image: drupal:8.9.2-fpm
     steps:
       - checkout
       # Setup Environment Variables
+      - run:
+          command: |
+            apt-get install -y curl git vim wget
       - run:
           name: Install Composer
           command: |
