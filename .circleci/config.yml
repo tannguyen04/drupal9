@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Setup Environment Variables
           command: |
-        echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
+            echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
       - run:
           command: |
             apt-get update
