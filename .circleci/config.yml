@@ -5,7 +5,7 @@ jobs:
       - image: drupal:8.9.2-fpm
     steps:
       - checkout
-      # install composer
+      # Setup Environment Variables
       - run:
           name: Install Composer
           command: |
@@ -14,4 +14,4 @@ jobs:
             php -r "unlink('composer-setup.php');"
             mv composer.phar /usr/local/bin/composer
       - run: composer install
-      - run: echo 'abc'
+      - run: echo $PATH:$HOME/.composer/vendor/bin
