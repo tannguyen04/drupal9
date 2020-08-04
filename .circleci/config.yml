@@ -7,9 +7,14 @@ jobs:
       - checkout
       # Setup Environment Variables
       - run:
+          name: Setup Environment Variables
+          command: |
+        echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
+      - run:
           command: |
             apt-get update
             apt-get install -y curl git vim wget
+      # install composer
       - run:
           name: Install Composer
           command: |
@@ -18,4 +23,4 @@ jobs:
             php -r "unlink('composer-setup.php');"
             mv composer.phar /usr/local/bin/composer
       - run: composer install
-      - run: echo $PATH:$HOME/.composer/vendor/bin
+      - run: phpcs -i
