@@ -1,4 +1,5 @@
 version: 2.0
+working_directory: /var/www/html
 jobs:
   build:
     docker:
@@ -13,7 +14,7 @@ jobs:
     steps:
       - checkout:
           path: /var/www/html
-      - run: $PWD
+      - run: pwd
       # Setup Environment Variables
       - run:
           name: Setup Environment Variables
