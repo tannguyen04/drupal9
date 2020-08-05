@@ -7,18 +7,23 @@ jobs:
         environment:
           MYSQL_ROOT_PASSWORD: lilengine
           MYSQL_DATABASE: default
-          MYSQL_USER: user
-          MYSQL_PASSWORD: user
       - image: wodby/nginx:1.19-5.10.2
         environment:
           NGINX_SERVER_ROOT: /home/wodby/project
     steps:
       - checkout
-      - run: pwd
       # Setup Environment Variables
       - run:
           name: Setup Environment Variables
           command: |
             echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
-      - run: composer install
+      # Import database
+      - run:
+          command: |
+            wget https://github.com/datacharmer/test_db/blob/master/employees.sql db.sql
+            mysql -u root -p lilengine default < db.sql
+      # End import database
+      # Check standard coding
       - run: phpcs web/core/modules/ban -vvv
+      # Install composer
+      - run: composer install
