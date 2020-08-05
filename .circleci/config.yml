@@ -1,12 +1,11 @@
 version: 2.0
 jobs:
   build:
-    environment:
-      MYSQL_ROOT_PASSWORD: 123
-      MYSQL_ALLOW_EMPTY_PASSWORD: TRUE
     docker:
       - image: wodby/drupal-php:7.4-4.17.1
       - image: wodby/mariadb:10.4-3.8.5
+        environment:
+          MYSQL_ROOT_PASSWORD: lilengine
       - image: wodby/nginx:1.19-5.10.2
     steps:
       - checkout
