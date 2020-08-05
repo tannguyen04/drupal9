@@ -12,7 +12,7 @@ jobs:
       - image: wodby/nginx:1.19-5.10.2
     steps:
       - checkout
-          path: /var/www/html
+        path: /var/www/html
       - run: $PWD
       # Setup Environment Variables
       - run:
