@@ -19,8 +19,7 @@
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-project-message": "^9",
         "drupal/core-recommended": "^9",
-        "drush/drush": "^10.2",
-        "jakub-onderka/php-parallel-lint": "^1.0"
+        "drush/drush": "^10.2"
     },
     "conflict": {
         "drupal/drupal": "*"
