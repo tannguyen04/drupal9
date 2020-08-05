@@ -2,8 +2,7 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: bitnami/git:latest
-      - image: bitnami/drupal-nginx:9.0.2-debian-10-r20
+      - image: circleci/php:7.4.7-apache-buster
     steps:
       - checkout
       # Setup Environment Variables
@@ -11,17 +10,5 @@ jobs:
           name: Setup Environment Variables
           command: |
             echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
-      - run:
-          command: |
-            apt-get update
-            apt-get install -y curl git vim wget
-      # Install composer
-      - run:
-          name: Install Composer
-          command: |
-            php -r "copy('https://raw.githubusercontent.com/composer/getcomposer.org/master/web/installer', 'composer-setup.php');"
-            php composer-setup.php
-            php -r "unlink('composer-setup.php');"
-            mv composer.phar /usr/local/bin/composer
       - run: composer install
       - run: phpcs web/core/modules/action
