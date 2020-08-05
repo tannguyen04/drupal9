@@ -1,8 +1,6 @@
 version: 2.0
 jobs:
   build:
-    environment:
-      CIRCLE_WORKING_DIRECTORY: /var/www/html
     docker:
       - image: wodby/drupal-php:7.4-4.17.1
       - image: wodby/mariadb:10.4-3.8.5
@@ -12,6 +10,8 @@ jobs:
           MYSQL_USER: user
           MYSQL_PASSWORD: user
       - image: wodby/nginx:1.19-5.10.2
+        environment:
+          NGINX_SERVER_ROOT: /home/wodby/project
     steps:
       - checkout
       - run: pwd
@@ -21,4 +21,4 @@ jobs:
           command: |
             echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
       - run: composer install
-      - run: phpcs web/core/modules/action
+      - run: phpcs -i
