@@ -7,6 +7,10 @@ jobs:
       - checkout
       # Setup Environment Variables
       - run:
+          name: Enable some PHP extentions
+          command: |
+            docker-php-ext-enable gd
+      - run:
           name: Setup Environment Variables
           command: |
             echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
