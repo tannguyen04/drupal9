@@ -1,5 +1,6 @@
 version: 2.0
-working_directory: /var/www/html
+environment:
+  CIRCLE_WORKING_DIRECTORY: /var/www/html
 jobs:
   build:
     docker:
@@ -12,8 +13,7 @@ jobs:
           MYSQL_PASSWORD: user
       - image: wodby/nginx:1.19-5.10.2
     steps:
-      - checkout:
-          path: /var/www/html
+      - checkout
       - run: pwd
       # Setup Environment Variables
       - run:
