@@ -2,6 +2,7 @@ version: 2.0
 jobs:
   build:
     docker:
+      - image: bitnami/git:latest
       - image: bitnami/drupal-nginx:9.0.2-debian-10-r20
     steps:
       - checkout
