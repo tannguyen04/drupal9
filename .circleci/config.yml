@@ -9,7 +9,7 @@ jobs:
           MYSQL_DATABASE: default
       - image: wodby/nginx:1.19-5.10.2
         environment:
-          NGINX_SERVER_ROOT: /home/wodby/project
+          NGINX_SERVER_ROOT: /home/wodby/project/web
     steps:
       - checkout
       # Setup Environment Variables
