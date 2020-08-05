@@ -20,7 +20,7 @@ jobs:
       # Import database
       - run:
           command: |
-            wget https://github.com/datacharmer/test_db/blob/master/employees.sql db.sql
+            wget https://raw.githubusercontent.com/datacharmer/test_db/master/employees.sql db.sql
             mysql -u root -p lilengine default < db.sql
       # End import database
       # Check standard coding
