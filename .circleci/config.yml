@@ -7,12 +7,16 @@ jobs:
         environment:
           MYSQL_ROOT_PASSWORD: lilengine
           MYSQL_DATABASE: default
+          MYSQL_ROOT_HOST: "%"
       - image: wodby/nginx:1.19-5.10.2
         environment:
           NGINX_SERVER_ROOT: /home/wodby/project/web
     steps:
       - checkout
       # Setup Environment Variables
+      - run: echo "127.0.0.1      db" >> /etc/hosts
+      - run: sudo systemctl restart nginx
+      - run: service nginx restart
       - run:
           name: Setup Environment Variables
           command: |
