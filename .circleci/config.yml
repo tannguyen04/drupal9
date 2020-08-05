@@ -14,9 +14,6 @@ jobs:
     steps:
       - checkout
       # Setup Environment Variables
-      - run: sudo echo "127.0.0.1      db" >> /etc/hosts
-      - run: sudo systemctl restart nginx
-      - run: service nginx restart
       - run:
           name: Setup Environment Variables
           command: |
@@ -25,9 +22,10 @@ jobs:
       - run:
           command: |
             wget -O db.sql https://raw.githubusercontent.com/datacharmer/test_db/master/employees.sql
-            mysql -uroot -plilengine default < db.sql
+            mysql -u root -p lilengine -h 127.0.0.1 default < db.sql
       # End import database
       # Check standard coding
       - run: phpcs web/core/modules/ban -vvv
       # Install composer
       - run: composer install
+      - run: drush status
