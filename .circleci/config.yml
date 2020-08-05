@@ -1,8 +1,8 @@
 version: 2.0
-environment:
-  CIRCLE_WORKING_DIRECTORY: /var/www/html
 jobs:
   build:
+    environment:
+      CIRCLE_WORKING_DIRECTORY: /var/www/html
     docker:
       - image: wodby/drupal-php:7.4-4.17.1
       - image: wodby/mariadb:10.4-3.8.5
