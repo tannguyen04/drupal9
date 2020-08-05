@@ -21,4 +21,4 @@ jobs:
           command: |
             echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
       - run: composer install
-      - run: phpcs -i
+      - run: phpcs web/core/modules/ban -vvv
