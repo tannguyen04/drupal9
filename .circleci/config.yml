@@ -13,6 +13,7 @@ jobs:
       - image: wodby/nginx:1.19-5.10.2
     steps:
       - checkout
+      - run: $PWD
       # Setup Environment Variables
       - run:
           name: Setup Environment Variables
