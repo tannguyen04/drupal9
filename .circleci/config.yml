@@ -21,7 +21,7 @@ jobs:
       - run:
           command: |
             wget -O db.sql https://raw.githubusercontent.com/datacharmer/test_db/master/employees.sql
-            mysql -u root -p lilengine default < db.sql
+            mysql -uroot -plilengine default < db.sql
       # End import database
       # Check standard coding
       - run: phpcs web/core/modules/ban -vvv
