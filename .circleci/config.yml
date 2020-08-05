@@ -14,7 +14,7 @@ jobs:
     steps:
       - checkout
       # Setup Environment Variables
-      - run: echo "127.0.0.1      db" >> /etc/hosts
+      - run: sudo echo "127.0.0.1      db" >> /etc/hosts
       - run: sudo systemctl restart nginx
       - run: service nginx restart
       - run:
