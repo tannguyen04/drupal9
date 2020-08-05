@@ -9,6 +9,7 @@ jobs:
       - run:
           name: Enable some PHP extentions
           command: |
+            docker-php-ext-install gd
             docker-php-ext-enable gd
       - run:
           name: Setup Environment Variables
