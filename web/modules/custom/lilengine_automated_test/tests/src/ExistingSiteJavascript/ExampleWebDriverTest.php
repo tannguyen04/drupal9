@@ -40,6 +40,7 @@ class ExampleSelenium2DriverTest extends ExistingSiteSelenium2DriverTestBase
       $tags = $page->findField('field_tags[target_id]');
       $tags->setValue('Ter');
       $tags->keyDown('m');
+      $this->captureScreenshot();
       $result = $web_assert->waitForElementVisible('css', '.ui-autocomplete li');
       $this->assertNotNull($result);
       $this->captureScreenshot();
