@@ -9,22 +9,4 @@ jobs:
           MYSQL_ROOT_PASSWORD: lilengine
     steps:
       - checkout
-      - run:
-          name: Symlink
-          command: |
-            apt update
-            apt install git -y
-            ln -s "$HOME/project/web/" /var/www/html
-      # Setup Environment Variables
-      - run:
-          name: Setup Environment Variables
-          command: |
-            echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
-      - run: cd "$HOME/project/web"
-      # End import database
-      # Install composer
-      - run: composer install
-      - run: drush si standard --db-url=mysql://root:lilengine@127.0.0.1/default
-      # Check standard coding
-      #- run: phpcs web/modules/custom  -vvv
-      - run: drush status
+
