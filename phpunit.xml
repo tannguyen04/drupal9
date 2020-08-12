@@ -16,6 +16,7 @@
              Specify a temporary directory for storing debug images and html documents.
              These artifacts get copied to /sites/simpletest/browser_output by BrowserTestBase. -->
         <env name="BROWSERTEST_OUTPUT_DIRECTORY" value="web/sites/default/files/browser_output"/>
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled"/>
         <!-- To disable deprecation testing completely uncomment the next line. -->
         <!--<env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled"/>-->
         <!-- Specify the default directory screenshots should be placed. -->
