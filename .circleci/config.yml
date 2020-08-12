@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: drupal:9.0.3-apache
-      - image: mariadb:10.3
+      - image: mysql:5.7
         environment:
           MYSQL_DATABASE: default
           MYSQL_ROOT_PASSWORD: lilengine
