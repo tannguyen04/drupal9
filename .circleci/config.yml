@@ -14,13 +14,13 @@ jobs:
           command: |
             apt update
             apt install git -y
-            ln -s /root/project/web/ /var/www/html
+            ln -s $HOME/project/web/ /var/www/html
       # Setup Environment Variables
       - run:
           name: Setup Environment Variables
           command: |
             echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
-      - run: cd /root/project/web
+      - run: cd $HOME/project/web
       # End import database
       # Install composer
       - run: composer install
