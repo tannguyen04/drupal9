@@ -15,8 +15,6 @@ jobs:
           command: |
             apt update
             apt install git -y
-            chmod -R 777 /root
-            chown -R www-data:www-data /root
             ls -al /root/project
             rm -rf /var/www/html
             ln -s /root/project/web/ /var/www/html
@@ -29,6 +27,7 @@ jobs:
       # End import database
       # Install composer
       - run: composer install
+      - run: chown -R www-data:www-data /root
       - run: drush si standard --db-url=mysql://root:lilengine@127.0.0.1/default --account-pass="admin"
       # Check standard coding
       #- run: phpcs web/modules/custom  -vvv
