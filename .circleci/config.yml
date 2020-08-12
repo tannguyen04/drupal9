@@ -24,7 +24,7 @@ jobs:
       # End import database
       # Install composer
       - run: composer install
-      - run: drush si standard --db-url=mysql://root:lilengine@localhost/default
+      - run: drush si standard --db-url=mysql://root:lilengine@127.0.0.1/default
       # Check standard coding
       #- run: phpcs web/modules/custom  -vvv
       - run: drush status
