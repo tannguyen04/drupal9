@@ -9,7 +9,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: lilengine
       - image: selenium/standalone-chrome
         ports:
-          - "4444"
+          - "4444:4444"
     steps:
       - checkout
       - run:
