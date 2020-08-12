@@ -34,5 +34,5 @@ jobs:
       #- run: phpcs web/modules/custom  -vvv
       - run: drush status
       - run: /etc/init.d/apache2 start
-      - run: phpunit web/modules/custom/lilengine_automated_test/tests/src/ExistingSite
+      - run: phpunit web/modules/custom/lilengine_automated_test/tests/src/ExistingSiteJavascript
       - run: curl http://localhost
