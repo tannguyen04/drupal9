@@ -84,8 +84,11 @@
         }
     },
     "require-dev": {
+        "behat/mink-selenium2-driver": "^1.4",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
         "drupal/coder": "^8.3",
-        "phpcompatibility/php-compatibility": "^9.3"
+        "drupal/core-dev": "^9.0",
+        "phpcompatibility/php-compatibility": "^9.3",
+        "weitzman/drupal-test-traits": "^1.5"
     }
 }

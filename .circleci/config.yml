@@ -2,30 +2,29 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: wodby/drupal-php:7.4-4.17.1
-      - image: wodby/mariadb:10.4-3.8.5
+      - image: drupal:9.0.3-apache
+      - image: mariadb:10.3
         environment:
-          MYSQL_ROOT_PASSWORD: lilengine
           MYSQL_DATABASE: default
-          MYSQL_ROOT_HOST: "%"
-      - image: wodby/nginx:1.19-5.10.2
-        environment:
-          NGINX_SERVER_ROOT: /home/wodby/project/web
+          MYSQL_ROOT_PASSWORD: lilengine
     steps:
       - checkout
+      - run:
+          name: Symlink
+          command: |
+            apt update
+            apt install git -y
+            ln -s /root/project/web/ /var/www/html
       # Setup Environment Variables
       - run:
           name: Setup Environment Variables
           command: |
             echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
-      # Import database
-      - run:
-          command: |
-            wget -O db.sql https://raw.githubusercontent.com/datacharmer/test_db/master/employees.sql
-            mysql -u root -p lilengine -h 127.0.0.1 default < db.sql
+      - run: cd /root/project/web
       # End import database
-      # Check standard coding
-      - run: phpcs web/core/modules/ban -vvv
       # Install composer
       - run: composer install
+      - run: drush si standard --db-url=mysql://root:lilengine@localhost/default
+      # Check standard coding
+      #- run: phpcs web/modules/custom  -vvv
       - run: drush status
