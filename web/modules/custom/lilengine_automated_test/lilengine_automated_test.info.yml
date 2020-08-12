@@ -1,0 +1,3 @@
+name: Lilengine Testing
+description: Testing
+core_version_requirement: ^8 || ^9
