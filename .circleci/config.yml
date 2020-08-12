@@ -2,8 +2,7 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: drupal:9.0.3-apache
-        restart: always
+      - image: circleci/php:7.4.5-apache-buster
       - image: mysql:5.7
         environment:
           MYSQL_DATABASE: default
