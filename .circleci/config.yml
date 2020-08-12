@@ -7,6 +7,9 @@ jobs:
         environment:
           MYSQL_DATABASE: default
           MYSQL_ROOT_PASSWORD: lilengine
+      - image: selenium/standalone-chrome
+        ports:
+          - "4444:4444"
     steps:
       - checkout
       - run:
@@ -14,13 +17,15 @@ jobs:
           command: |
             apt update
             apt install git -y
+            chmod -R 777 /root
+            rm -rf /var/www/html
             ln -s /root/project/web/ /var/www/html
       # Setup Environment Variables
       - run:
           name: Setup Environment Variables
           command: |
             echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
-      - run: cd /root/project/web
+      - run: cd /root/project
       # End import database
       # Install composer
       - run: composer install
@@ -29,4 +34,5 @@ jobs:
       #- run: phpcs web/modules/custom  -vvv
       - run: drush status
       - run: /etc/init.d/apache2 start
+      - run: phpunit web/modules/custom/lilengine_automated_test/tests/src/ExistingSite
       - run: curl http://localhost
