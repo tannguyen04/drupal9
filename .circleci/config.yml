@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: drupal:9.0.3-apache
+        restart: always
       - image: mysql:5.7
         environment:
           MYSQL_DATABASE: default
