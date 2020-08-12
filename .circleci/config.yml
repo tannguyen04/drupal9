@@ -2,11 +2,31 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: circleci/php:7.4.5-apache-buster
+      - image: drupal:9.0.3-apache
       - image: mysql:5.7
         environment:
           MYSQL_DATABASE: default
           MYSQL_ROOT_PASSWORD: lilengine
     steps:
       - checkout
-
+      - run:
+          name: Symlink
+          command: |
+            apt update
+            apt install git -y
+            ln -s /root/project/web/ /var/www/html
+      # Setup Environment Variables
+      - run:
+          name: Setup Environment Variables
+          command: |
+            echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
+      - run: cd /root/project/web
+      # End import database
+      # Install composer
+      - run: composer install
+      - run: drush si standard --db-url=mysql://root:lilengine@127.0.0.1/default
+      # Check standard coding
+      #- run: phpcs web/modules/custom  -vvv
+      - run: drush status
+      - run: sudo /etc/init.d/apache2 start
+      - run: curl http://localhost
