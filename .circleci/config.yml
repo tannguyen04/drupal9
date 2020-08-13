@@ -36,7 +36,7 @@ jobs:
     steps:
       - checkout
       - prepare_environment
-      - run: cd project && compose install
+      - run: cd /root/project && composer install
       - run: phpcs web/modules/custom
   checking_phpunit:
     executor:
@@ -46,7 +46,7 @@ jobs:
       - prepare_environment
       - install_fully_drupal_site
       - run: /etc/init.d/apache2 start
-      - run: cd /root/project
+      - run: cd /root/project && drush cr
       - run: phpunit web/modules/custom/lilengine_automated_test/tests/src/ExistingSiteJavascript
 workflows:
   version: 2
