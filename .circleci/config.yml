@@ -1,6 +1,6 @@
-version: 2.0
-jobs:
-  build:
+version: 2.1
+executors:
+  default:
     docker:
       - image: drupal:9.0.3-apache
       - image: mysql:5.7
@@ -8,6 +8,10 @@ jobs:
           MYSQL_DATABASE: default
           MYSQL_ROOT_PASSWORD: lilengine
       - image: selenium/standalone-chrome
+jobs:
+  build:
+    executor:
+      name: default
     steps:
       - checkout
       - run:
@@ -37,4 +41,29 @@ jobs:
       - run: ls -al /root/project
       - run: drush cr
       - run: phpunit web/modules/custom/lilengine_automated_test/tests/src/ExistingSiteJavascript
+  test:
+    executor:
+      name: default
+    steps:
+      - checkout
+      - run: cd /root/project
+      - run: ls -al /root/project
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires
+            - build
+
+
+
+
+
+
+
+
+
 
