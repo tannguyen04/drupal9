@@ -13,22 +13,22 @@ commands:
     description: "Prepare tooling, setup path for environment"
     steps:
       - run:
-        command: |
-          apt update && apt install git -y
-          echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
-          chmod -R 755 /root
-          rm -rf /var/www/html
-          ln -s /root/project/web/ /var/www/html
+          command: |
+            apt update && apt install git -y
+            echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
+            chmod -R 755 /root
+            rm -rf /var/www/html
+            ln -s /root/project/web/ /var/www/html
   install_fully_drupal_site:
     description: "Install Drupal instance ready for testing"
     steps:
       - run:
-        command: |
-          cd /root/project
-          composer install
-          chown -R www-data:www-data /root/project
-          chmod -R 755 /root/project
-          drush si standard --db-url=mysql://root:lilengine@127.0.0.1/default --account-pass="admin"
+          command: |
+            cd /root/project
+            composer install
+            chown -R www-data:www-data /root/project
+            chmod -R 755 /root/project
+            drush si standard --db-url=mysql://root:lilengine@127.0.0.1/default --account-pass="admin"
 jobs:
   checking_coding_standard:
     executor:
