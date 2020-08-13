@@ -16,6 +16,7 @@ commands:
           command: |
             apt update && apt install git -y
             echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
+            chown -R www-data:www-data /root/project
             chmod -R 755 /root
             rm -rf /var/www/html
             ln -s /root/project/web/ /var/www/html
@@ -26,8 +27,6 @@ commands:
           command: |
             cd /root/project
             composer install
-            chown -R www-data:www-data /root/project
-            chmod -R 755 /root/project
             drush si standard --db-url=mysql://root:lilengine@127.0.0.1/default --account-pass="admin"
 jobs:
   checking_coding_standard:
