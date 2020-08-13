@@ -17,7 +17,7 @@ commands:
             apt update && apt install git -y
             echo "export PATH=$PATH:$HOME/project/vendor/bin" >> $BASH_ENV
             chown -R www-data:www-data /root/project
-            chmod -R 755 /root
+            chmod -R 777 /root
             rm -rf /var/www/html
             ln -s /root/project/web/ /var/www/html
   install_fully_drupal_site:
@@ -51,7 +51,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - checking_coding_standard
+      #- checking_coding_standard
       - checking_phpunit
 
 
